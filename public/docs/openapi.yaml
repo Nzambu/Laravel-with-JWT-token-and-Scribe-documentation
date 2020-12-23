@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+    title: Laravel
+    description: ''
+    version: 1.0.0
+servers:
+    -
+        url: 'http://localhost'
+paths:
+    /api/login:
+        post:
+            summary: Login
+            description: 'Gain access to the application'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Authentication
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                username:
+                                    type: string
+                                    description: 'The registered username.'
+                                    example: possimus
+                                password:
+                                    type: string
+                                    description: 'The user secret code.'
+                                    example: esse
+                            required:
+                                - username
+                                - password
+            security: []
+    /api/refresh:
+        get:
+            summary: 'Refresh token'
+            description: 'Refresh the bearer token when user is logged in and token is about to expire'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Authentication
+            security: []
+    /api/logout:
+        get:
+            summary: 'Log out'
+            description: 'Voluntatirly end access to the application'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses: {  }
+            tags:
+                - Authentication
+            security: []
