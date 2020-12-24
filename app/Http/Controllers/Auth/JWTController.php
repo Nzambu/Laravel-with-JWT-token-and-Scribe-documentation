@@ -42,13 +42,18 @@ class JWTController extends Controller
      * 
      * Gain access to the application
      * 
-     * @apiResource App\Http\Requests\Auth\JWTRequest
+     * @apiResource App\Http\Resources\Auth\JWTResource
      * @apiResourceModel App\Models\Auth\JWTAuth   
      * 
      * @return object A token generated for the user to access the system
      */
     public function login(JWTRequest $request) {
-        return User::all();
+        $credentials = request(['email', 'password']);
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return $this->respondWithToken($token);
     }
 
     /**
@@ -56,12 +61,12 @@ class JWTController extends Controller
      * 
      * Refresh the bearer token when user is logged in and token is about to expire
      * 
-     * @apiResource App\Http\Requests\Auth\JWTRequest
+     * @apiResource App\Http\Resources\Auth\JWTResource
      * @apiResourceModel App\Models\Auth\JWTAuth
      * 
      * @return object A new access token
      */
-    public function refreshToken(){
+    public function refreshToken(JWTRequest $request){
 
     }
 
@@ -74,5 +79,21 @@ class JWTController extends Controller
      */
     public function logout() {
 
+    }
+
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
+        ]);
     }
 }
