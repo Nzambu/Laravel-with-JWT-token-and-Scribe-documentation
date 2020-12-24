@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "af339ebc-359f-4d84-9be8-764bebebd8fe",
+        "_postman_id": "b5384692-fff1-4710-9114-8a442a1be975",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -42,7 +42,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"username\": \"possimus\",\n    \"password\": \"esse\"\n}"
+                            "raw": "{\n    \"email\": \"nisi\",\n    \"password\": \"in\"\n}"
                         },
                         "description": "Gain access to the application",
                         "auth": {
@@ -72,7 +72,10 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"qui\",\n    \"password\": \"iste\"\n}"
+                        },
                         "description": "Refresh the bearer token when user is logged in and token is about to expire",
                         "auth": {
                             "type": "noauth"

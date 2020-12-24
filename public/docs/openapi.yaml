@@ -36,16 +36,16 @@ paths:
                         schema:
                             type: object
                             properties:
-                                username:
+                                email:
                                     type: string
-                                    description: 'The registered username.'
-                                    example: possimus
+                                    description: 'The registered user email.'
+                                    example: nisi
                                 password:
                                     type: string
                                     description: 'The user secret code.'
-                                    example: esse
+                                    example: in
                             required:
-                                - username
+                                - email
                                 - password
             security: []
     /api/refresh:
@@ -70,6 +70,24 @@ paths:
             responses: {  }
             tags:
                 - Authentication
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    description: 'The registered user email.'
+                                    example: qui
+                                password:
+                                    type: string
+                                    description: 'The user secret code.'
+                                    example: iste
+                            required:
+                                - email
+                                - password
             security: []
     /api/logout:
         get:
