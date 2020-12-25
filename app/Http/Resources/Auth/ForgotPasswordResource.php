@@ -4,7 +4,7 @@ namespace App\Http\Resources\Auth;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class JWTResource extends JsonResource
+class ForgotPasswordResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,13 +14,11 @@ class JWTResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        return  [
             "type" => "authorization",
-            "id" => "token",
+            "id" => "forgot_password",
             "attributes" => [
-                "access_token" => $this->access_token,
-                "token_type" => $this->token_type,
-                "expires_in" => $this->expires_in,
+                "message" => "Please check your email to get the change password link",
             ],
             "links" => [
                 "self" => $request->fullUrl()

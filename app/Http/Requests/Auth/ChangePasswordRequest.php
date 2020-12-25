@@ -4,7 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JWTRequest extends FormRequest
+class ChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,33 +24,22 @@ class JWTRequest extends FormRequest
     public function rules()
     {
         return [
-            "email" => "required|string|exists:users,email",
-            "password" => "required|string"
+            "password" => "required|string|min:8",
+            "password_confirmation" => "required|confirmed"
         ];
     }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages(){
-    return [
-        'email.exists' => 'The email is incorrect or invalid',
-    ];
-}
 
     /**
      * Documentation
      */
     public function bodyParameters() {
         return [
-            "email" => [
-                "description" => "The registered user email",
-            ],
             "password" => [
-                "description" => "The user secret code",
+                "description" => "The new password that is a minimum of 8 characters",
             ],
+            "password_confirmation" => [
+                "description" => "Re-type the new password as a confirmation",
+            ]
         ];
     }
 }

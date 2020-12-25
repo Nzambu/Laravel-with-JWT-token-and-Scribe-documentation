@@ -4,7 +4,7 @@ namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class JWTRequest extends FormRequest
+class ForgotPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,9 @@ class JWTRequest extends FormRequest
     public function rules()
     {
         return [
-            "email" => "required|string|exists:users,email",
-            "password" => "required|string"
+            "email" => "required|string|exists:users,email"            
         ];
     }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages(){
-    return [
-        'email.exists' => 'The email is incorrect or invalid',
-    ];
-}
 
     /**
      * Documentation
@@ -47,10 +35,7 @@ class JWTRequest extends FormRequest
         return [
             "email" => [
                 "description" => "The registered user email",
-            ],
-            "password" => [
-                "description" => "The user secret code",
-            ],
+            ]
         ];
     }
 }

@@ -26,7 +26,23 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    type: authorization
+                                    id: token
+                                    attributes: { access_token: null, token_type: null, expires_in: null }
+                                    links: { self: 'http://localhost/api/login' }
+                                properties:
+                                    type: { type: string, example: authorization }
+                                    id: { type: string, example: token }
+                                    attributes: { type: object, example: { access_token: null, token_type: null, expires_in: null } }
+                                    links: { type: object, example: { self: 'http://localhost/api/login' } }
             tags:
                 - Authentication
             requestBody:
@@ -39,15 +55,133 @@ paths:
                                 email:
                                     type: string
                                     description: 'The registered user email.'
-                                    example: nisi
+                                    example: autem
                                 password:
                                     type: string
                                     description: 'The user secret code.'
-                                    example: in
+                                    example: atque
                             required:
                                 - email
                                 - password
             security: []
+    /api/forgot_password:
+        post:
+            summary: 'Forgot password'
+            description: 'Send user an email with a link to change password in the event user forgot password or needs to change password'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    type: authorization
+                                    id: forgot_password
+                                    attributes: { message: 'Please check your email to get the change password link' }
+                                    links: { self: 'http://localhost/api/forgot_password' }
+                                properties:
+                                    type: { type: string, example: authorization }
+                                    id: { type: string, example: forgot_password }
+                                    attributes: { type: object, example: { message: 'Please check your email to get the change password link' } }
+                                    links: { type: object, example: { self: 'http://localhost/api/forgot_password' } }
+            tags:
+                - Authentication
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    description: 'The registered user email.'
+                                    example: voluptatum
+                            required:
+                                - email
+            security: []
+    '/api/change_password/{$link}':
+        post:
+            summary: 'Change password'
+            description: 'Set a new password that will be used to gain access the application'
+            parameters:
+                -
+                    in: header
+                    name: Content-Type
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+                -
+                    in: header
+                    name: Accept
+                    description: ''
+                    example: application/json
+                    schema:
+                        type: string
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    type: authorization
+                                    id: logout
+                                    attributes: { message: 'Please check your email to get the change password link' }
+                                    links: { self: 'http://localhost/api/change_password/1' }
+                                properties:
+                                    type: { type: string, example: authorization }
+                                    id: { type: string, example: logout }
+                                    attributes: { type: object, example: { message: 'Please check your email to get the change password link' } }
+                                    links: { type: object, example: { self: 'http://localhost/api/change_password/1' } }
+            tags:
+                - Authentication
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                password:
+                                    type: string
+                                    description: 'The new password that is a minimum of 8 characters.'
+                                    example: aut
+                                password_confirmation:
+                                    type: string
+                                    description: 'Re-type the new password as a confirmation.'
+                                    example: accusantium
+                            required:
+                                - password
+                                - password_confirmation
+            security: []
+        parameters:
+            -
+                in: path
+                name: $link
+                description: ''
+                example: eos
+                required: true
+                schema:
+                    type: string
     /api/refresh:
         get:
             summary: 'Refresh token'
@@ -67,27 +201,25 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                200:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    type: authorization
+                                    id: token
+                                    attributes: { access_token: null, token_type: null, expires_in: null }
+                                    links: { self: 'http://localhost/api/refresh' }
+                                properties:
+                                    type: { type: string, example: authorization }
+                                    id: { type: string, example: token }
+                                    attributes: { type: object, example: { access_token: null, token_type: null, expires_in: null } }
+                                    links: { type: object, example: { self: 'http://localhost/api/refresh' } }
             tags:
                 - Authentication
-            requestBody:
-                required: true
-                content:
-                    application/json:
-                        schema:
-                            type: object
-                            properties:
-                                email:
-                                    type: string
-                                    description: 'The registered user email.'
-                                    example: qui
-                                password:
-                                    type: string
-                                    description: 'The user secret code.'
-                                    example: iste
-                            required:
-                                - email
-                                - password
             security: []
     /api/logout:
         get:
@@ -108,7 +240,17 @@ paths:
                     example: application/json
                     schema:
                         type: string
-            responses: {  }
+            responses:
+                401:
+                    description: ''
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                example:
+                                    message: Unauthenticated.
+                                properties:
+                                    message: { type: string, example: Unauthenticated. }
             tags:
                 - Authentication
             security: []

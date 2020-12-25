@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "b5384692-fff1-4710-9114-8a442a1be975",
+        "_postman_id": "7b3c829c-008a-4a58-b09c-e3f022213844",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -42,9 +42,81 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"email\": \"nisi\",\n    \"password\": \"in\"\n}"
+                            "raw": "{\n    \"email\": \"autem\",\n    \"password\": \"atque\"\n}"
                         },
                         "description": "Gain access to the application",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Forgot password",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/forgot_password",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/forgot_password"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"email\": \"voluptatum\"\n}"
+                        },
+                        "description": "Send user an email with a link to change password in the event user forgot password or needs to change password",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Change password",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/change_password\/{$link}",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/change_password\/{$link}",
+                            "variable": [
+                                {
+                                    "id": "$link",
+                                    "key": "$link",
+                                    "value": "eos",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"password\": \"aut\",\n    \"password_confirmation\": \"accusantium\"\n}"
+                        },
+                        "description": "Set a new password that will be used to gain access the application",
                         "auth": {
                             "type": "noauth"
                         }
@@ -72,10 +144,7 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\n    \"email\": \"qui\",\n    \"password\": \"iste\"\n}"
-                        },
+                        "body": null,
                         "description": "Refresh the bearer token when user is logged in and token is about to expire",
                         "auth": {
                             "type": "noauth"

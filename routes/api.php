@@ -21,18 +21,29 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'middleware' => 'api'
 ], function($router){
-    Route::post('login', ['App\Http\Controllers\Auth\JWTController', 'login']); 
-});
-
-// Route::group(['middleware' => 'auth:api', 'as' => 'auth'], function ()
-// {
     /*
     |--------------------------------------------------------------------------
-    | Authentication Routes
+    | Authentication Routes - login, forgot password && change password
+    |--------------------------------------------------------------------------
+    | The routes address login, forgot and change password
+    |
+    */
+    Route::post('login', ['App\Http\Controllers\Auth\JWTController', 'login']); 
+    Route::post('forgot_password', ['App\Http\Controllers\Auth\JWTController','forgotPassword']);
+    Route::post('change_password/{$link}', ['App\Http\Controllers\Auth\JWTController','changePassword']);
+    Route::get('refresh', ['App\Http\Controllers\Auth\JWTController', 'refreshToken']); 
+    Route::get('logout', ['App\Http\Controllers\Auth\JWTController', 'logout']);
+});
+
+Route::group(['middleware' => 'auth:api', 'as' => 'auth'], function ()
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Authentication Routes - refresh, logout
     |--------------------------------------------------------------------------
     | The routes address refreshing access token and user log out
     |
     */
     Route::get('refresh', ['App\Http\Controllers\Auth\JWTController', 'refreshToken']); 
     Route::get('logout', ['App\Http\Controllers\Auth\JWTController', 'logout']); 
-// });
+});
