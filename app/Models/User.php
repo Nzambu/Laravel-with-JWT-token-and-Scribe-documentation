@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements JWTSubject
 {
-    // use HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The table name

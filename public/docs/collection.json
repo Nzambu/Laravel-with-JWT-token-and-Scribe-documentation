@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "7b3c829c-008a-4a58-b09c-e3f022213844",
+        "_postman_id": "8e4af467-7aca-42db-91d7-556f1339e752",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -42,7 +42,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"email\": \"autem\",\n    \"password\": \"atque\"\n}"
+                            "raw": "{\n    \"email\": \"optio\",\n    \"password\": \"ratione\"\n}"
                         },
                         "description": "Gain access to the application",
                         "auth": {
@@ -74,7 +74,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"email\": \"voluptatum\"\n}"
+                            "raw": "{\n    \"email\": \"sunt\"\n}"
                         },
                         "description": "Send user an email with a link to change password in the event user forgot password or needs to change password",
                         "auth": {
@@ -96,7 +96,7 @@
                                 {
                                     "id": "$link",
                                     "key": "$link",
-                                    "value": "eos",
+                                    "value": "porro",
                                     "description": ""
                                 }
                             ]
@@ -114,7 +114,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\n    \"password\": \"aut\",\n    \"password_confirmation\": \"accusantium\"\n}"
+                            "raw": "{\n    \"password\": \"aut\",\n    \"password_confirmation\": \"alias\"\n}"
                         },
                         "description": "Set a new password that will be used to gain access the application",
                         "auth": {

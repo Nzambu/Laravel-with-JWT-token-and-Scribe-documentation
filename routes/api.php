@@ -31,8 +31,6 @@ Route::group([
     Route::post('login', ['App\Http\Controllers\Auth\JWTController', 'login']); 
     Route::post('forgot_password', ['App\Http\Controllers\Auth\JWTController','forgotPassword']);
     Route::post('change_password/{$link}', ['App\Http\Controllers\Auth\JWTController','changePassword']);
-    Route::get('refresh', ['App\Http\Controllers\Auth\JWTController', 'refreshToken']); 
-    Route::get('logout', ['App\Http\Controllers\Auth\JWTController', 'logout']);
 });
 
 Route::group(['middleware' => 'auth:api', 'as' => 'auth'], function ()

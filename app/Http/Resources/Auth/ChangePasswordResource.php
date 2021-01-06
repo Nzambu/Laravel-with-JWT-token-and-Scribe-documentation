@@ -18,7 +18,7 @@ class ChangePasswordResource extends JsonResource
             "type" => "authorization",
             "id" => "logout",
             "attributes" => [
-                "message" => "Please check your email to get the change password link",
+                "message" => "The password was set successfully",
             ],
             "links" => [
                 "self" => $request->fullUrl()

@@ -97,11 +97,14 @@ class JWTController extends Controller
      * 
      * Voluntatirly end access to the application
      * 
+     * @apiResource App\Http\Resources\Auth\LogoutResource
+     * @apiResourceModel App\Models\User
+     * 
      * @return object A success message
      */
     public function logout(Request $request) 
     {
-        $this->auth()->logout();
+        return $this->auth()->logout();
         return new LogoutResource($request);
     }
 
@@ -141,7 +144,7 @@ class JWTController extends Controller
     public function changePassword(ChangePasswordRequest $request, $link)
     {
         User::where('reset_password_link', $link)->update(['password' => $request->password]);
-        return new ChangePasswordResource();
+        return new ChangePasswordResource($request);
     }
 
     /**

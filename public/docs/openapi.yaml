@@ -55,11 +55,11 @@ paths:
                                 email:
                                     type: string
                                     description: 'The registered user email.'
-                                    example: autem
+                                    example: optio
                                 password:
                                     type: string
                                     description: 'The user secret code.'
-                                    example: atque
+                                    example: ratione
                             required:
                                 - email
                                 - password
@@ -112,7 +112,7 @@ paths:
                                 email:
                                     type: string
                                     description: 'The registered user email.'
-                                    example: voluptatum
+                                    example: sunt
                             required:
                                 - email
             security: []
@@ -145,12 +145,12 @@ paths:
                                 example:
                                     type: authorization
                                     id: logout
-                                    attributes: { message: 'Please check your email to get the change password link' }
+                                    attributes: { message: 'The password was set successfully' }
                                     links: { self: 'http://localhost/api/change_password/1' }
                                 properties:
                                     type: { type: string, example: authorization }
                                     id: { type: string, example: logout }
-                                    attributes: { type: object, example: { message: 'Please check your email to get the change password link' } }
+                                    attributes: { type: object, example: { message: 'The password was set successfully' } }
                                     links: { type: object, example: { self: 'http://localhost/api/change_password/1' } }
             tags:
                 - Authentication
@@ -168,7 +168,7 @@ paths:
                                 password_confirmation:
                                     type: string
                                     description: 'Re-type the new password as a confirmation.'
-                                    example: accusantium
+                                    example: alias
                             required:
                                 - password
                                 - password_confirmation
@@ -178,7 +178,7 @@ paths:
                 in: path
                 name: $link
                 description: ''
-                example: eos
+                example: porro
                 required: true
                 schema:
                     type: string
@@ -241,16 +241,22 @@ paths:
                     schema:
                         type: string
             responses:
-                401:
+                200:
                     description: ''
                     content:
                         application/json:
                             schema:
                                 type: object
                                 example:
-                                    message: Unauthenticated.
+                                    type: authorization
+                                    id: logout
+                                    attributes: { message: 'Successfully logged out' }
+                                    links: { self: 'http://localhost/api/logout' }
                                 properties:
-                                    message: { type: string, example: Unauthenticated. }
+                                    type: { type: string, example: authorization }
+                                    id: { type: string, example: logout }
+                                    attributes: { type: object, example: { message: 'Successfully logged out' } }
+                                    links: { type: object, example: { self: 'http://localhost/api/logout' } }
             tags:
                 - Authentication
             security: []
