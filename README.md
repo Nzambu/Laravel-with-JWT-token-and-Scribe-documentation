@@ -1,0 +1,1 @@
+# Laravel-with-JWT-token-and-Scribe-documentation
